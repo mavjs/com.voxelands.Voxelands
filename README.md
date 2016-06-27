@@ -10,12 +10,12 @@ flatpak --user install gnome-sdk org.gnome.Platform 3.20
 flatpak --user install gnome-sdk org.gnome.Sdk 3.20
 
 # Build repository with GNOME runtime and Voxelands app
-flatpak-builder --force-clean --repo=voxelands-repo app com.voxelands.Voxelands.json
+flatpak-builder --force-clean --repo=voxelands.com app com.voxelands.Voxelands.json
 ```
 
 ## Install and run Voxelands bundle
 ```
-flatpak --user remote-add --no-gpg-verify --if-not-exists voxelands-repo app 
-flatpak --user install voxelands-repo com.voxelands.Voxelands
+flatpak --user remote-add --no-gpg-verify --if-not-exists voxelands voxelands.com
+flatpak --user install voxelands com.voxelands.Voxelands
 flatpak run com.voxelands.Voxelands
 ```
