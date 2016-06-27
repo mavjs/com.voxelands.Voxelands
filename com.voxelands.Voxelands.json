@@ -62,7 +62,6 @@
                     "sha256": "2c16caa653e57f3c71873aa88797c97117981d6b0974254ce24d933dd27f9a86"
                 }
             ]
-            
         },
         {
             "name": "libpng",
@@ -164,13 +163,28 @@
         {
             "name": "voxelands",
             "cmake": true,
-            "config-opts": ["-DCMAKE_INSTALL_PREFIX:PATH=/app", "-DIRRLICHT_INCLUDE_DIR=/app/include/irrlicht", "-DBUILD_SERVER=1"],
+            "config-opts": ["-DCMAKE_INSTALL_PREFIX:PATH=/app", "-DIRRLICHT_INCLUDE_DIR=/app/include/irrlicht", "-DBUILD_SERVER=0"],
             "sources": [
                 {
                     "type": "git",
                     "branch": "master",
                     "url": "https://gitlab.com/voxelands/voxelands"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/voxelands-cmake.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/voxelands-jthread.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/voxelands-appdata.patch"
                 }
+            ],
+            "post-install": [
+            "mv /app/share/appdata/voxelands.appdata.xml /app/share/appdata/com.voxelands.Voxelands.appdata.xml"
             ]
         }
     ]
