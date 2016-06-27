@@ -9,7 +9,7 @@ flatpak --user remote-add gnome-sdk --gpg-import=gnome-sdk.gpg http://sdk.gnome.
 flatpak --user install gnome-sdk org.freedesktop.Platform 1.4
 flatpak --user install gnome-sdk org.freedesktop.Sdk 1.4
 
-# Build repository with GNOME runtime and Voxelands app
+# Build repository with Freedesktop runtime and Voxelands app
 flatpak-builder --force-clean --repo=voxelands.com app com.voxelands.Voxelands.json
 ```
 
