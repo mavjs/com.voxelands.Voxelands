@@ -1,0 +1,177 @@
+{
+    "app-id": "com.voxelands.Voxelands",
+    "branch": "master",
+    "command": "voxelands",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "3.20",
+    "sdk": "org.gnome.Sdk",
+    "metadata": "metadata",
+    "rename-desktop-file": "voxelands.desktop",
+    "rename-icon": "voxelands",
+    "separate-locales": true,
+    "finish-args": [
+        "--socket=x11",
+        "--socket=wayland",
+        "--share=ipc",
+        "--device=dri",
+        "--share=network",
+        "--filesystem=home"
+    ],
+    "modules": [
+        {
+            "name": "bzip2",
+            "no-autogen": true,
+            "make-install-args": ["PREFIX=/app"],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://www.bzip.org/1.0.6/bzip2-1.0.6.tar.gz",
+                    "sha256": "a2848f34fcd5d6cf47def00461fcb528a0484d8edef8208d6d2e2909dc61d9cd"
+                }
+            ]
+        },
+        {
+            "name": "gettext",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://ftp.gnu.org/gnu/gettext/gettext-0.19.8.1.tar.xz",
+                    "sha256": "105556dbc5c3fbbc2aa0edb46d22d055748b6f5c7cd7a8d99f8e7eb84e938be4"
+                }
+            ]
+        },
+        {
+            "name": "tcl",
+            "subdir": "unix",
+            "config-opts": ["--disable-symbols", "--disable-shared"],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://downloads.sourceforge.net/sourceforge/tcl/tcl-core8.6.5-src.tar.gz",
+                    "sha256": "10b6a0159e6bb458682b044726f544058a79ee2875644bd6755d2e69309fe963"
+                }
+            ]
+        },
+        {
+            "name": "sqlite",
+            "config-opts": ["--disable-tcl"],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://www.sqlite.org/2016/sqlite-src-3120200.zip",
+                    "sha256": "2c16caa653e57f3c71873aa88797c97117981d6b0974254ce24d933dd27f9a86"
+                }
+            ]
+            
+        },
+        {
+            "name": "libpng",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://downloads.sourceforge.net/libpng/libpng-1.6.23.tar.xz",
+                    "sha256": "6d921e7bdaec56e9f6594463ec1fe1981c3cd2d5fc925d3781e219b5349262f1"
+                }
+            ]
+        },
+        {
+            "name": "nasm",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://www.nasm.us/pub/nasm/releasebuilds/2.12/nasm-2.12.tar.bz2",
+                    "sha256": "0ea005493081540093d1d53eac6ae4da63ce0afcdd102c623f255b8a5067831e"
+                }
+            ]
+        },
+        {
+            "name": "libjpeg-turbo",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://downloads.sourceforge.net/libjpeg-turbo/libjpeg-turbo-1.5.0.tar.gz",
+                    "sha256": "9f397c31a67d2b00ee37597da25898b03eb282ccd87b135a50a69993b6a2035f"
+                }
+            ]
+        },
+        {
+            "name": "libXxf86vm",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://xorg.freedesktop.org/archive/individual/lib/libXxf86vm-1.1.4.tar.bz2",
+                    "sha256": "afee27f93c5f31c0ad582852c0fb36d50e4de7cd585fcf655e278a633d85cd57"
+                }
+            ]
+        },
+        {
+            "name": "irrlicht",
+            "subdir": "source/Irrlicht",
+            "no-autogen": true,
+            "make-args": ["NDEBUG=1", "sharedlib"],
+            "make-install-args": ["INSTALL_DIR=/app/lib"],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://downloads.sourceforge.net/irrlicht/irrlicht-1.8.3.zip",
+                    "sha256": "9e7be44277bf2004d73580a8585e7bd3c9ce9a3c801691e4f4aed030ac68931c"
+                }
+            ]
+        },
+        {
+            "name": "openal-soft",
+            "cmake": true,
+            "config-opts": ["-DALSOFT_CPUEXT_NEON:BOOL=OFF"],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://kcat.strangesoft.net/openal-releases/openal-soft-1.17.2.tar.bz2",
+                    "sha256": "a341f8542f1f0b8c65241a17da13d073f18ec06658e1a1606a8ecc8bbc2b3314"
+                }
+            ]
+        },
+        {
+            "name": "libogg",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://downloads.xiph.org/releases/ogg/libogg-1.3.2.tar.xz",
+                    "sha256": "3f687ccdd5ac8b52d76328fbbfebc70c459a40ea891dbf3dccb74a210826e79b"
+                }
+            ]
+        },
+        {
+            "name": "libvorbis",
+            "config-opts": ["--disable-docs"],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.4.tar.xz",
+                    "sha256": "2f05497d29195dc23ee952a24ee3973a74e6277569c4c2eca0ec5968e541f372"
+                }
+            ]
+        },
+        {
+            "name": "desktop-file-utils",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://www.freedesktop.org/software/desktop-file-utils/releases/desktop-file-utils-0.21.tar.xz",
+                    "sha256": "b6c9b860538ef1cffbcdfbc9cb578f85a080ad8c1207c8b3a39e9fd183f9782b"
+                }
+            ]
+        },
+        {
+            "name": "voxelands",
+            "cmake": true,
+            "config-opts": ["-DCMAKE_INSTALL_PREFIX:PATH=/app", "-DIRRLICHT_INCLUDE_DIR=/app/include/irrlicht", "-DBUILD_SERVER=1"],
+            "sources": [
+                {
+                    "type": "git",
+                    "branch": "master",
+                    "url": "https://gitlab.com/voxelands/voxelands"
+                }
+            ]
+        }
+    ]
+}
