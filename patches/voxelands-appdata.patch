@@ -1,0 +1,11 @@
+diff -ruN voxelands/misc/voxelands.appdata.xml voxelands-source/misc/voxelands.appdata.xml
+--- voxelands/misc/voxelands.appdata.xml	2016-04-30 08:49:46.000000000 +0200
++++ voxelands-source/misc/voxelands.appdata.xml	2016-06-27 06:26:23.472915436 +0200
+@@ -25,7 +25,6 @@
+   <url type="faq">http://forum.voxelands.com/viewforum.php?id=6</url>
+   <url type="help">http://forum.voxelands.com/viewforum.php?id=8</url>
+   <url type="homepage">http://www.voxelands.com/</url>
+-  <project_group>none</project_group>
+   <screenshots>
+     <screenshot type="default">
+       <caption>Voxelands Character Creator</caption>
