@@ -1,13 +1,13 @@
 # Voxelands specification for [flatpak](http://flatpak.org/)
 
 ## Create a Voxelands bundle
-
+Check available [runtimes](http://flatpak.org/runtimes.html)
 ```bash
-# Install GNOME runtime and SDK
+# Install Freedesktop runtime and SDK
 wget https://sdk.gnome.org/keys/gnome-sdk.gpg
 flatpak --user remote-add gnome-sdk --gpg-import=gnome-sdk.gpg http://sdk.gnome.org/repo/
-flatpak --user install gnome-sdk org.gnome.Platform 3.20
-flatpak --user install gnome-sdk org.gnome.Sdk 3.20
+flatpak --user install gnome-sdk org.freedesktop.Platform 1.4
+flatpak --user install gnome-sdk org.freedesktop.Sdk 1.4
 
 # Build repository with GNOME runtime and Voxelands app
 flatpak-builder --force-clean --repo=voxelands.com app com.voxelands.Voxelands.json
