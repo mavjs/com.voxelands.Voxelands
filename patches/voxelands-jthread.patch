@@ -1,0 +1,11 @@
+--- voxelands-1602.00/src/jthread/CMakeLists.txt	2016-02-27 14:59:57.000000000 +0100
++++ voxelands-patch/src/jthread/CMakeLists.txt	2016-03-03 10:30:16.193347379 +0100
+@@ -17,7 +17,7 @@
+ 	endif (JTHREAD_WIN32_CRITICALSECTION)
+ endif( UNIX )
+ 
+-add_library(jthread ${jthread_SRCS})
++add_library(jthread STATIC ${jthread_SRCS})
+ 
+ target_link_libraries(
+ 	jthread

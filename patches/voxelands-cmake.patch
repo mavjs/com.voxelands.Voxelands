@@ -1,0 +1,62 @@
+diff -uNr voxelands-1602.00/CMakeLists.txt voxelands-patch/CMakeLists.txt
+--- voxelands-1602.00/CMakeLists.txt	2016-02-27 14:59:57.000000000 +0100
++++ voxelands-patch/CMakeLists.txt	2016-03-02 14:20:30.278763573 +0100
+@@ -34,9 +34,6 @@
+ set(REBUILD_ICNS 0 CACHE BOOL "Rebuild icns from voxelands.svg .")
+ 
+ set(CPU_OPTS 0 CACHE BOOL "Enable CPU optimizations")
+-set(ENABLE_SSP 1 CACHE BOOL "Enable stack smashing protection")
+-set(ENABLE_SAFESTACK 1 CACHE BOOL "Enable SafeStack if supported (LLVM only)")
+-set(ENABLE_PIE 0 CACHE BOOL "Produce a Position Independent Executable")
+ 
+ if(NOT CMAKE_BUILD_TYPE)
+ 	# Default to release
+diff -uNr voxelands-1602.00/src/CMakeLists.txt voxelands-patch/src/CMakeLists.txt
+--- voxelands-1602.00/src/CMakeLists.txt	2016-02-27 14:59:57.000000000 +0100
++++ voxelands-patch/src/CMakeLists.txt	2016-03-02 14:25:22.223319620 +0100
+@@ -372,43 +372,16 @@
+ 		set(CMAKE_OSX_ARCHITECTURES x86_64 FORCE)
+ 		set(ARCH x86_64)
+ 	endif()
+-
+-	set(SAFETY_FLAGS "-fno-strict-aliasing -fwrapv -fvisibility=hidden")
+-	set(SAFETY_LDFLAGS "")
+-	set(OPT_FLAGS "-O2 -fomit-frame-pointer")
+-	set(OPT_LDFLAGS "-Wl,-O1,--as-needed,--discard-all,--no-undefined,-s,--sort-common,-z,relro,-z,now")
+-
+-	if(ENABLE_SSP)
+-		CHECK_CXX_COMPILER_FLAG("-fstack-protector-strong" HAS_FSTACK_STRONG)
+-		if(HAS_FSTACK_STRONG)
+-			set(SAFETY_FLAGS "${SAFETY_FLAGS} -fstack-protector-strong")
+-		else()
+-			set(SAFETY_FLAGS "${SAFETY_FLAGS} -fstack-protector")
+-		endif()
+-	endif()
+-	if(ENABLE_SAFESTACK)
+-		CHECK_CXX_COMPILER_FLAG("-fsanitize=safe-stack" HAS_SAFESTACK)
+-		if(HAS_SAFESTACK)
+-			set(SAFETY_FLAGS "${SAFETY_FLAGS} -fsanitize=safe-stack")
+-			set(SAFETY_LDFLAGS "-fsanitize=safe-stack -lrt")
+-		endif()
+-	endif()
+-	if(ENABLE_PIE)
+-		set(SAFETY_FLAGS "${SAFETY_FLAGS} -fPIC -fPIE")
+-		set(SAFETY_LDFLAGS "${LINKER_FLAGS} -Wl,-pie")
+-	endif()
+ 	if(CPU_OPTS)
+ 		set(OPT_FLAGS "${OPT_FLAGS} -march=native -mtune=native")
+ 	endif()
+ 
+-
+-
+-	set(CMAKE_CXX_FLAGS_RELEASE "${OPT_FLAGS} ${SAFETY_FLAGS} -Wall -DNDEBUG -pipe")
++    set(CMAKE_CXX_FLAGS_RELEASE "${OPT_FLAGS} ${SAFETY_FLAGS} -Wall -DNDEBUG -pipe" CACHE STRING "Let the system override CMAKE_CXX_FLAGS_RELEASE variable")
+ 	set(CMAKE_C_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
+ 	set(CMAKE_CXX_FLAGS_DEBUG "${SAFETY_FLAGS} -Wall -O0 -g2 -ggdb")
+ 	set(CMAKE_C_FLAGS_DEBUG ${CMAKE_CXX_FLAGS_DEBUG})
+ 
+-	set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${OPT_LDFLAGS} ${SAFETY_LDFLAGS}")
++    set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${OPT_LDFLAGS} ${SAFETY_LDFLAGS}" CACHE STRING "Let the system override CMAKE_EXE_LINKER_FLAGS_RELEASE variable")
+ 	set(CMAKE_MODULE_LINKER_FLAGS_RELEASE ${CMAKE_EXE_LINKER_FLAGS_RELEASE})
+ 	set(CMAKE_SHARED_LINKER_FLAGS_RELEASE ${CMAKE_EXE_LINKER_FLAGS_RELEASE})
+ 	set(CMAKE_EXE_LINKER_FLAGS_DEBUG "${SAFETY_LDFLAGS}")
