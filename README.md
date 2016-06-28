@@ -1,4 +1,4 @@
-# Voxelands specification for [flatpak](http://flatpak.org/)
+# Voxelands build files for [flatpak](http://flatpak.org/)
 
 ## Create a Voxelands bundle
 Check available [runtimes](http://flatpak.org/runtimes.html)
@@ -19,3 +19,6 @@ flatpak --user remote-add --no-gpg-verify --if-not-exists voxelands voxelands.co
 flatpak --user install voxelands com.voxelands.Voxelands
 flatpak run com.voxelands.Voxelands
 ```
+
+## Notes
+Currently does not work with Nvidia GPUs. (see [flatpak issue](https://github.com/flatpak/flatpak/issues/138))
